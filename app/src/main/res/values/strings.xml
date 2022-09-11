@@ -2,4 +2,18 @@
     <string name="app_name">Nmedia</string>
     <string name="greeting">NMedia!</string>
     <string name="avatar_description">Author avatar</string>
+    <string name="remove">Remove</string>
+    <string name="author_name">Author name</string>
+    <string name="date">Date</string>
+    <string name="menu">Menu</string>
+    <string name="post_text">Post text</string>
+    <string name="like_button">Like button</string>
+    <string name="quantity_of_likes">Quantity of likes</string>
+    <string name="share_button">Share button</string>
+    <string name="qauntity_of_shares">Qauntity of shares</string>
+    <string name="quantity_of_views">Quantity of views</string>
+    <string name="views_icon">Views icon</string>
+    <string name="save_button">Save</string>
+    <string name="edit_button">Edit</string>
+    <string name="edit_message_text">Edit Post</string>
 </resources>

@@ -2,6 +2,7 @@ package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,11 +11,9 @@ import ru.netology.nmedia.databinding.PostListItemBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.functions.likesToText
 
-typealias OnLikeListener = (Post) -> Unit
 
 class PostsAdapter(
-    private val onLikeClicked: OnLikeListener,
-    private val onShareClicked: OnLikeListener
+    private val interactionListener: PostInteractionListener
 ) : ListAdapter<Post, PostsAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,7 +21,7 @@ class PostsAdapter(
         val binding = PostListItemBinding.inflate(
             inflater, parent, false
         )
-        return ViewHolder(binding, onLikeClicked, onShareClicked)
+        return ViewHolder(binding, interactionListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -32,18 +31,36 @@ class PostsAdapter(
 
     class ViewHolder(
         private val binding: PostListItemBinding,
-        private val onLikeClicked: OnLikeListener,
-        private val onShareClicked: OnLikeListener
+        listener: PostInteractionListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
         private lateinit var post: Post
 
+        private val popupMenu by lazy {
+            PopupMenu(itemView.context, binding.options).apply {
+                inflate(R.menu.options_post)
+                setOnMenuItemClickListener { menuItem ->
+                    when (menuItem.itemId) {
+                        R.id.remove -> {
+                            listener.onRemoveClicked(post)
+                            true
+                        }
+                        R.id.edit -> {
+                            listener.onEditClicked(post)
+                            true
+                        }
+                        else -> false
+                    }
+                }
+            }
+        }
+
         init {
             binding.likeBtn.setOnClickListener {
-                onLikeClicked(post)
+                listener.onLikeClicked(post)
             }
             binding.shareBtn.setOnClickListener {
-                onShareClicked(post)
+                listener.onShareClicked(post)
             }
         }
 
@@ -57,7 +74,7 @@ class PostsAdapter(
                 likeBtn.setImageResource(if (post.likedByUser) R.drawable.ic_like_pushed_24dp else R.drawable.ic_like_24dp)
                 likesCount.text = likesToText(post.likes)
                 sharesCount.text = likesToText(post.shares)
-
+                options.setOnClickListener { popupMenu.show() }
             }
         }
     }
