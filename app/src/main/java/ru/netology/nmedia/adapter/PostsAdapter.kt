@@ -79,8 +79,6 @@ class PostsAdapter(
                 likeBtn.isChecked = post.likedByUser
 //                likeBtn.setButtonDrawable(getLikeIconResId(post.likedByUser))
                 shareBtn.text = likesToText(post.shares)
-                shareBtn.isChecked = false
-                options.isChecked = false
             }
         }
 
