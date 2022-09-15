@@ -47,7 +47,7 @@
         android:layout_marginEnd="@dimen/common_spacing"
         android:background="@android:color/transparent"
         android:contentDescription="@string/save_button"
-        android:src="@drawable/ic_save_changes_30dp"
+        android:src="@drawable/ic_save_changes_32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/contentEditText"

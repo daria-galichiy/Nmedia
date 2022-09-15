@@ -1,7 +1,10 @@
 package ru.netology.nmedia.adapter
 
+import android.content.ContextWrapper
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -62,6 +65,7 @@ class PostsAdapter(
             binding.shareBtn.setOnClickListener {
                 listener.onShareClicked(post)
             }
+            binding.options.setOnClickListener { popupMenu.show() }
         }
 
         fun bind(post: Post) {
@@ -71,12 +75,16 @@ class PostsAdapter(
                 authorName.text = post.author
                 postText.text = post.content
                 date.text = post.published
-                likeBtn.setImageResource(if (post.likedByUser) R.drawable.ic_like_pushed_24dp else R.drawable.ic_like_24dp)
-                likesCount.text = likesToText(post.likes)
-                sharesCount.text = likesToText(post.shares)
-                options.setOnClickListener { popupMenu.show() }
+                likeBtn.text = likesToText(post.likes)
+                likeBtn.isChecked = post.likedByUser
+//                likeBtn.setButtonDrawable(getLikeIconResId(post.likedByUser))
+                shareBtn.text = likesToText(post.shares)
             }
         }
+
+        @DrawableRes
+        private fun getLikeIconResId(liked: Boolean) =
+            if (liked) R.drawable.ic_like_pushed_24dp else R.drawable.ic_like_24dp
     }
 
     private object DiffCallback : DiffUtil.ItemCallback<Post>() {
