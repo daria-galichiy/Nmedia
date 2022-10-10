@@ -86,7 +86,9 @@ class PostsAdapter(
                 likeBtn.isChecked = post.likedByUser
 //                likeBtn.setButtonDrawable(getLikeIconResId(post.likedByUser))
                 shareBtn.text = likesToText(post.shares)
+
                 if (post.video != "") videoGroup.visibility = View.VISIBLE
+
             }
         }
 
