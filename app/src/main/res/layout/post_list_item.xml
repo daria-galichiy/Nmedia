@@ -79,12 +79,42 @@
         app:layout_constraintTop_toBottomOf="@id/headerBarrier"
         tools:text="efwffewfewfewfewf" />
 
+    <ImageView
+        android:id="@+id/videoImage"
+        android:layout_width="400dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="@dimen/common_spacing"
+        android:contentDescription="@string/video_background"
+        android:src="@drawable/ic_video_background"
+        app:layout_constraintEnd_toEndOf="@id/postText"
+        app:layout_constraintStart_toStartOf="@id/postText"
+        app:layout_constraintTop_toBottomOf="@id/postText"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/playBtn"
+        style="@style/Widget.AppTheme.VideoTextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/play_video"
+        app:layout_constraintBottom_toBottomOf="@id/videoImage"
+        app:layout_constraintEnd_toEndOf="@id/videoImage"
+        app:layout_constraintStart_toStartOf="@id/videoImage"
+        app:layout_constraintTop_toTopOf="@id/videoImage" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/videoGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="videoImage,playBtn" />
+
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/buttonsBarrier"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="postText" />
+        app:constraint_referenced_ids="videoImage" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/likeBtn"
@@ -105,7 +135,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:checkable="true"
         android:contentDescription="@string/share_button"
         app:layout_constraintStart_toEndOf="@id/likeBtn"
         app:layout_constraintTop_toBottomOf="@id/buttonsBarrier"
@@ -118,7 +147,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/common_spacing"
         android:background="@android:color/transparent"
-        android:checkable="true"
         android:contentDescription="@string/views_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonsBarrier"
