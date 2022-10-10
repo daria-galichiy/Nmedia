@@ -17,4 +17,9 @@
     <string name="save_button">Сохранить</string>
     <string name="edit_button">Редактировать</string>
     <string name="edit_message_text">Редактирование</string>
+    <string name="chooser_share_post">Поделиться</string>
+    <string name="description_post_save">Кнопка сохранения поста</string>
+    <string name="add_post">Добавить пост</string>
+    <string name="video_background">Фон видео</string>
+    <string name="play_video">Проиграть видео</string>
 </resources>

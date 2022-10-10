@@ -16,4 +16,9 @@
     <string name="save_button">Save</string>
     <string name="edit_button">Edit</string>
     <string name="edit_message_text">Edit Post</string>
+    <string name="chooser_share_post">Share post</string>
+    <string name="description_post_save">Ok-button for saving post</string>
+    <string name="add_post">Add post</string>
+    <string name="video_background">Video background</string>
+    <string name="play_video">Play video</string>
 </resources>
