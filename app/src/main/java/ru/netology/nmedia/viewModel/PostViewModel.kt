@@ -1,6 +1,7 @@
 package ru.netology.nmedia.viewModel
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,6 +12,7 @@ import ru.netology.nmedia.data.impl.InMemoryPostRepository
 import ru.netology.nmedia.data.impl.SharedPrefsPostRepository
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.util.SingleLiveEvent
+
 
 class PostViewModel(
     application: Application
@@ -24,7 +26,8 @@ class PostViewModel(
 
     val sharePostContent = SingleLiveEvent<String>()
     val playPostVideo = SingleLiveEvent<String?>()
-    val navigateToPostContentScreenEvent = SingleLiveEvent<Unit>()
+    val navigateToPostContentScreenEvent = SingleLiveEvent<String>()
+    val navigateToPostActionsScreenEvent = SingleLiveEvent<Post>()
 
     val currentPost = MutableLiveData<Post?>(null)
 
@@ -65,11 +68,20 @@ class PostViewModel(
 
     override fun onEditClicked(post: Post) {
         currentPost.value = post
-        navigateToPostContentScreenEvent.call()
+        navigateToPostContentScreenEvent.value = post.content
     }
 
     override fun onCloseEditingClicked() {
         currentPost.value = null
+    }
+
+    override fun onPostClicked(post: Post) {
+        Toast.makeText(
+            getApplication<Application>().applicationContext,
+            "Clicked on post , author of post is ${post.author}",
+            Toast.LENGTH_SHORT
+        ).show()
+        navigateToPostActionsScreenEvent.value = post
     }
 
     // endregion PostInteractionListener
