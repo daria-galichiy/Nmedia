@@ -1,4 +1,4 @@
-package ru.netology.nmedia.activity
+package ru.netology.nmedia.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -22,6 +22,5 @@ class IntentHandlerActivity : AppCompatActivity() {
         Snackbar.make(binding.root, text, Snackbar.LENGTH_INDEFINITE)
             .setAction(android.R.string.ok) { finish() }
             .show()
-
     }
 }

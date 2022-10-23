@@ -1,7 +1,5 @@
 package ru.netology.nmedia.adapter
 
-import android.content.ContextWrapper
-import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,13 +43,13 @@ class PostsAdapter(
                 inflate(R.menu.options_post)
                 setOnMenuItemClickListener { menuItem ->
                     when (menuItem.itemId) {
-                        R.id.remove -> {
-                            listener.onRemoveClicked(post)
-                            true
-                        }
                         R.id.edit -> {
                             listener.onEditClicked(post)
                             true
+                        }
+                        R.id.remove -> {
+                        listener.onRemoveClicked(post)
+                        true
                         }
                         else -> false
                     }
@@ -73,6 +71,9 @@ class PostsAdapter(
                 listener.onPlayVideoClicked(post)
             }
             binding.options.setOnClickListener { popupMenu.show() }
+            itemView.setOnClickListener {
+                listener.onPostClicked(post)
+            }
         }
 
         fun bind(post: Post) {
@@ -88,7 +89,6 @@ class PostsAdapter(
                 shareBtn.text = likesToText(post.shares)
 
                 if (post.video != "") videoGroup.visibility = View.VISIBLE
-
             }
         }
 
